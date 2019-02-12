@@ -1,0 +1,4 @@
+deps/*
+models/*
+bin/*
+.vscode/*

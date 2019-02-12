@@ -1,0 +1,76 @@
+#pragma once
+
+#define NOMINMAX
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <algorithm>
+#include <locale>
+#include <codecvt>
+#include <experimental/filesystem>
+#include <iomanip>
+#include <functional>
+#include <queue>
+
+#include <DirectXMath.h>
+#include <DirectXCollision.h>
+#include <DirectXColors.h>
+#include <DirectXPackedVector.h>
+
+#include <glm/common.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
+#include <glm/gtc/color_space.hpp>
+#include <glm/gtc/epsilon.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtc/random.hpp>
+
+#define GLFW_EXPOSE_NATIVE_WIN32
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+#include <GLFW/glfw3native.h>
+
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <assimp/version.h>
+
+#define LOG(str) { printf(str); OutputDebugStringA(str); }
+#define LOGW(wstr) { wprintf_s(wstr); OutputDebugStringW(wstr); }
+#define BREAK(str) { LOG(str); DebugBreak(); }
+#define BREAKW(wstr) { LOGW(wstr); DebugBreak(); }
+
+#define SIZEOF_IN_UINT32(obj) ((sizeof(obj) - 1) / sizeof(UINT32) + 1)
+
+inline void ThrowIfFailed(HRESULT hr, const char* msg = nullptr)
+{
+  if (FAILED(hr))
+  {
+    if (msg != nullptr)
+    {
+      LOG(msg);
+    }
+
+    DebugBreak();
+  }
+}
+
+inline void ThrowIfFalse(bool r, const char* msg = nullptr)
+{
+  if (r == false)
+  {
+    if (msg != nullptr)
+    {
+      LOG(msg);
+    }
+
+    DebugBreak();
+  }
+}
